@@ -20,6 +20,11 @@ namespace EmployeeManagement.Api.Controllers
             this.employeeRepsitory = employeeRepsitory;
         }
 
+        public async Task<ActionResult<IEnumerable<Employee>>> Search(string name, Gender? gender)
+        {
+            return null;
+        }
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
         {
