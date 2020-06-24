@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement.Api.Models
 {
-    interface IEmployeeRepsitory
+    public interface IEmployeeRepsitory
     {
         Task<IEnumerable<Employee>> GetEmployees();
         Task<Employee> GetEmployee(int employeeId);
