@@ -57,7 +57,7 @@ namespace EmployeeManagement.Api.Models
             {
                 query = query.Where(emp => emp.FirstName.Contains(name) || emp.LastName.Contains(name));
             }
-
+            
             if (gender != null)
             {
                 query = query.Where(emp => emp.Gender == gender);
