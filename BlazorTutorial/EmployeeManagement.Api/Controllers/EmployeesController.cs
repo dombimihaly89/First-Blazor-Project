@@ -42,8 +42,7 @@ namespace EmployeeManagement.Api.Controllers
                 var result = await employeeRepsitory.GetEmployee(employeeId);
                 if (result == null)
                 {
-                    Console.WriteLine("here i am");
-                    NotFound();
+                    return NotFound();
                 }
                 return result;
             }
@@ -76,8 +75,52 @@ namespace EmployeeManagement.Api.Controllers
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error retrieving data from the database");
+                    "Error adding data to the database");
             }
+        }
+
+        [HttpPut("{employeeId:int}")]
+        public async Task<ActionResult<Employee>> UpdateEmployee(int employeeId, Employee employee)
+        {
+            try
+            {
+                if (employeeId != employee.EmployeeId)
+                {
+                    return BadRequest("Employee ID mismatch");
+                }
+                var result = await employeeRepsitory.UpdateEmployee(employee);
+                if (result != null)
+                {
+                    return result;
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error updating data");
+            }
+            
+        }
+
+        [HttpDelete("{employeeId:int}")]
+        public async Task<ActionResult<Employee>> DeleteEmployee(int employeeId)
+        {
+            try
+            {
+                var employeeToDelete = await employeeRepsitory.GetEmployee(employeeId);
+                if (employeeToDelete != null)
+                {
+                    return await employeeRepsitory.DeleteEmployee(employeeId);
+                }
+                return NotFound($"There is no employee with id {employeeId}");
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                    "Error deleting data");
+            }
+
         }
     }
 }
