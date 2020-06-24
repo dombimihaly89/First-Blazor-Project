@@ -8,6 +8,7 @@ namespace EmployeeManagement.Api.Models
 {
     public interface IEmployeeRepsitory
     {
+        Task<IEnumerable<Employee>> Search(string name, Gender? gender);
         Task<IEnumerable<Employee>> GetEmployees();
         Task<Employee> GetEmployee(int employeeId);
         Task<Employee> GetEmployeeByEmail(string email);
