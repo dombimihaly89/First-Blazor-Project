@@ -30,6 +30,10 @@ namespace EmployeeManagement.Web
             {
                 client.BaseAddress = new Uri("https://localhost:44391/");
             });
+            services.AddHttpClient<IDepartmentService, DepartmentService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44391/");
+            });
             services.AddRazorPages();
             services.AddServerSideBlazor();
         }

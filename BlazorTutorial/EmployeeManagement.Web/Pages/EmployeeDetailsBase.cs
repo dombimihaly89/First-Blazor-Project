@@ -15,7 +15,7 @@ namespace EmployeeManagement.Web.Pages
 
         [Parameter]
         public string Id { get; set; }
-        public Employee Employee { get; set; } = new Employee();
+        public Employee Employee { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
