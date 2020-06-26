@@ -25,7 +25,7 @@ namespace EmployeeManagement.Api.Controllers
         {
             try
             {
-                return Ok(await departmentRepository.getDepartments());
+                return Ok(await departmentRepository.GetDepartments());
             }
             catch (Exception)
             {
@@ -40,7 +40,7 @@ namespace EmployeeManagement.Api.Controllers
         {
             try
             {
-                return Ok(await departmentRepository.getDepartment(departmentId));
+                return Ok(await departmentRepository.GetDepartment(departmentId));
             }
             catch (Exception)
             {
