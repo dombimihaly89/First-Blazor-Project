@@ -32,3 +32,7 @@
 <div>
     <p @bind-style="Colour" @bind-style:event="onChange">This is a sentence</p>
 </div>
+<div>
+    <textarea @bind="Description" @bind:event="oninput" style="width:500px"/>
+    <p>Characters: @(Description == null ? 0 : @Description.Length)</p>
+</div>
