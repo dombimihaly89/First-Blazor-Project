@@ -15,7 +15,7 @@ namespace EmployeeManagement.Models
         [Required]
         public string LastName { get; set; }
         [EmailAddress]
-        [EmailDomainValidator("com", "Email domain is not valid")]
+        [EmailDomainValidator("com", "The email address has to end with \"com\"")]
         public string Email { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }

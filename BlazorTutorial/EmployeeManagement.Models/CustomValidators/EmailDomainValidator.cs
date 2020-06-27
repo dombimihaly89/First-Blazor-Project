@@ -8,14 +8,14 @@ namespace EmployeeManagement.Models.CustomValidators
     public class EmailDomainValidator : ValidationAttribute
     {
 
-        private string DomainExtension { get; set; }
-        private string ErrorMessage { get; set; }
+        public string DomainExtension { get; set; }
 
         public EmailDomainValidator(string DomainExtension, string ErrorMessage)
         {
             this.DomainExtension = DomainExtension;
             this.ErrorMessage = ErrorMessage;
         }
+
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             string[] parts = value.ToString().Split('.');
@@ -23,7 +23,7 @@ namespace EmployeeManagement.Models.CustomValidators
             {
                 return null;
             }
-            return new ValidationResult((ErrorMessage == null) ? $"Domain has to end with \"{DomainExtension}\"." : ErrorMessage, new[] { validationContext.MemberName });
+            return new ValidationResult(ErrorMessage, new[] { validationContext.MemberName });
         }
     }
 }
