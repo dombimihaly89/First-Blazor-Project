@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EmployeeManagement.Models\EmployeeManagement.Models.csproj" />
+    <ProjectReference Include="..\Reusable.Components\Reusable.Components.csproj" />
   </ItemGroup>
 
   <ItemGroup>
