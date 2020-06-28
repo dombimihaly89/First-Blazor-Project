@@ -113,7 +113,7 @@ namespace EmployeeManagement.Api.Controllers
                 {
                     return result;
                 }
-                return NotFound();
+                return NotFound($"Employee with Id = {employeeId} not found");
             }
             catch (Exception)
             {
