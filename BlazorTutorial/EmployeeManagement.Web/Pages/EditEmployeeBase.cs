@@ -18,6 +18,8 @@ namespace EmployeeManagement.Web.Pages
         protected IDepartmentService DepartmentService { get; set; }
         [Inject]
         protected IMapper Mapper { get; set; }
+        [Inject] 
+        protected NavigationManager NavigationManager { get; set; }
 
         [Parameter]
         public string EmployeeId { get; set; }
@@ -34,8 +36,14 @@ namespace EmployeeManagement.Web.Pages
             Mapper.Map(Employee, EditEmployeeModel);
         }
 
-        protected void HandleValidSubmit()
+        protected async void HandleValidSubmit()
         {
+            Mapper.Map(EditEmployeeModel, Employee);
+            var result = await EmployeeService.UpdateEmployee(Employee.EmployeeId, Employee);
+            if (result != null)
+            {
+                NavigationManager.NavigateTo("/");
+            }
 
         }
     }

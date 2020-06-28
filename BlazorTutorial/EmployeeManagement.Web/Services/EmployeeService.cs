@@ -29,7 +29,8 @@ namespace EmployeeManagement.Web.Services
 
         public async Task<Employee> UpdateEmployee(int employeeId, Employee employee)
         {
-            return await httpClient.PostJsonAsync<Employee>($"api/employees/{employeeId}", employee);
+
+            return await httpClient.PutJsonAsync<Employee>($"api/employees/{employeeId}", employee);
         }
     }
 }
