@@ -1,4 +1,5 @@
-﻿using EmployeeManagement.Models;
+﻿using AutoMapper;
+using EmployeeManagement.Models;
 using EmployeeManagement.Web.Models;
 using EmployeeManagement.Web.Services;
 using Microsoft.AspNetCore.Components;
@@ -15,6 +16,8 @@ namespace EmployeeManagement.Web.Pages
         protected IEmployeeService EmployeeService { get; set; }
         [Inject]
         protected IDepartmentService DepartmentService { get; set; }
+        [Inject]
+        protected IMapper Mapper { get; set; }
 
         [Parameter]
         public string EmployeeId { get; set; }
@@ -27,16 +30,8 @@ namespace EmployeeManagement.Web.Pages
         {
             Employee = await EmployeeService.GetEmployee(int.Parse(EmployeeId));
             Departments = (await DepartmentService.GetDepartments()).ToList();
-            EditEmployeeModel.EmployeeId = Employee.EmployeeId;
-            EditEmployeeModel.FirstName = Employee.FirstName;
-            EditEmployeeModel.LastName = Employee.LastName;
-            EditEmployeeModel.Email = Employee.Email;
-            EditEmployeeModel.ConfirmEmail = Employee.Email;
-            EditEmployeeModel.DateOfBirth = Employee.DateOfBirth;
-            EditEmployeeModel.Gender = Employee.Gender;
-            EditEmployeeModel.PhotoPath = Employee.PhotoPath;
-            EditEmployeeModel.DepartmentId = Employee.DepartmentId;
-            EditEmployeeModel.Department = Employee.Department;
+
+            Mapper.Map(Employee, EditEmployeeModel);
         }
 
         protected void HandleValidSubmit()
