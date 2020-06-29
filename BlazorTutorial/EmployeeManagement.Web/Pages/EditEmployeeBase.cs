@@ -4,6 +4,7 @@ using EmployeeManagement.Web.Models;
 using EmployeeManagement.Web.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Reusable.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace EmployeeManagement.Web.Pages
         public Employee Employee { get; set; } = new Employee();
         public EditEmployeeModel EditEmployeeModel { get; set; } = new EditEmployeeModel();
         public List<Department> Departments { get; set; } = new List<Department>();
+        public ConfirmBase DeleteConfirmation { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
@@ -68,8 +70,18 @@ namespace EmployeeManagement.Web.Pages
 
         protected async Task Delete_Click()
         {
-            await EmployeeService.DeleteEmployee(Employee.EmployeeId);
-            NavigationManager.NavigateTo("/");
+            DeleteConfirmation.Show();
+            DeleteConfirmation.ConfirmationTitle = "Confirm Delete";
+            DeleteConfirmation.ConfirmationMessage = "Are you sure you want to delete \"" + Employee.FirstName + "\"?";
+        }
+
+        protected async Task ConfirmDelete_Click(bool value)
+        {
+            if (value)
+            {
+                await EmployeeService.DeleteEmployee(Employee.EmployeeId);
+                NavigationManager.NavigateTo("/");
+            }
         }
     }
 }
