@@ -1,0 +1,12 @@
+﻿<h3 style="@Color @Border">CascadeChild - @Counter</h3>
+<CascadeGrandChild></CascadeGrandChild>
+
+@code {
+    [CascadingParameter(Name = "Color")]
+    public string Color { get; set; }
+    [CascadingParameter(Name = "Border")]
+    public string Border { get; set; }
+    [CascadingParameter(Name = "Counter")]
+    public int Counter { get; set; } = 0;
+
+}

@@ -1,0 +1,22 @@
+﻿@page "/cascade"
+
+<button class="btn btn-primary" @onclick="Increment">Increment</button>
+<h3>CascadeParent - @Counter</h3>
+<CascadingValue Value="Color" Name="Color" IsFixed="true">
+    <CascadingValue Value="Border" Name="Border" IsFixed="true">
+        <CascadingValue Value="Counter" Name="Counter" IsFixed="false">
+            <CascadeChild></CascadeChild>
+        </CascadingValue>
+    </CascadingValue>
+</CascadingValue>
+
+@code {
+    public string Color { get; set; } = "color:red;";
+    public string Border { get; set; } = "border: 2px solid;";
+    public int Counter { get; set; } = 0;
+
+    public void Increment()
+    {
+        Counter++;
+    }
+}
