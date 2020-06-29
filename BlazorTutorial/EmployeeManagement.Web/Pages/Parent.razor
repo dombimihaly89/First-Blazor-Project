@@ -1,0 +1,13 @@
+﻿@page "/pc"
+<Child InputAttributes="AttributesFromParent" Value="Parent value"></Child>
+
+@code {
+    [Parameter]
+    public Dictionary<string, object> AttributesFromParent { get; set; } = new Dictionary<string, object>()
+{
+        { "required", "required" },
+        { "placeholder", "Parent Component Placeholder" },
+        { "size", "110" },
+        { "maxlength",  "16"}
+    };
+}
