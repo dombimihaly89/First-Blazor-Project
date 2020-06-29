@@ -5,7 +5,7 @@
 
 <EditForm Model="@EditEmployeeModel" OnValidSubmit="HandleValidSubmit">
     <ObjectGraphDataAnnotationsValidator />
-    <h3>@(EditEmployeeModel.EmployeeId != 0 ? "Edit Employee" : "Create New Employee")</h3>
+    <h3>@PageHeaderText</h3>
     <hr />
     <ValidationSummary />
     <div class="form-group row">

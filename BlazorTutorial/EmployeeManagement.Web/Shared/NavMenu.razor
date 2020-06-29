@@ -13,17 +13,35 @@
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="/editemployee" Match="NavLinkMatch.All">
+            <NavLink class="nav-link" href="/editemployee" @onclick="HandleClickCreate" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Create
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/editemployee/1" @onclick="HandleClickEdit" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Edit
             </NavLink>
         </li>
     </ul>
 </div>
 
 @code {
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
     private bool collapseNavMenu = true;
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void HandleClickCreate()
+    {
+        NavigationManager.NavigateTo("/editemployee", true);
+    }
+
+    private void HandleClickEdit()
+    {
+        NavigationManager.NavigateTo("/editemployee/1", true);
+    }
 
     private void ToggleNavMenu()
     {

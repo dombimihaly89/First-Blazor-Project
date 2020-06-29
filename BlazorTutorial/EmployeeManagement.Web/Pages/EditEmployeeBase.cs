@@ -3,6 +3,7 @@ using EmployeeManagement.Models;
 using EmployeeManagement.Web.Models;
 using EmployeeManagement.Web.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace EmployeeManagement.Web.Pages
         [Parameter]
         public string EmployeeId { get; set; }
 
+        public string PageHeaderText { get; set; }
         public Employee Employee { get; set; } = new Employee();
         public EditEmployeeModel EditEmployeeModel { get; set; } = new EditEmployeeModel();
         public List<Department> Departments { get; set; } = new List<Department>();
@@ -34,11 +36,13 @@ namespace EmployeeManagement.Web.Pages
             if (employeeId != 0)
             {
                 Employee = await EmployeeService.GetEmployee(employeeId);
+                PageHeaderText = "Edit Employee";
             } else
             {
                 Employee.DepartmentId = 1;
                 Employee.DateOfBirth = DateTime.Today;
                 Employee.PhotoPath = "images/nophoto.jpg";
+                PageHeaderText = "Create New Employee";
             }
             Departments = (await DepartmentService.GetDepartments()).ToList();
             Mapper.Map(Employee, EditEmployeeModel);
