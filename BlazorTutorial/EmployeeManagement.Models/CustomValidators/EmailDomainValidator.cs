@@ -18,10 +18,13 @@ namespace EmployeeManagement.Models.CustomValidators
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            string[] parts = value.ToString().Split('.');
-            if (parts[parts.Length - 1].ToUpper() == DomainExtension.ToUpper())
+            if (value != null)
             {
-                return null;
+                string[] parts = value.ToString().Split('.');
+                if (parts[parts.Length - 1].ToUpper() == DomainExtension.ToUpper())
+                {
+                    return null;
+                }
             }
             return new ValidationResult(ErrorMessage, new[] { validationContext.MemberName });
         }

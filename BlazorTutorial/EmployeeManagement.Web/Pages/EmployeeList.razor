@@ -2,8 +2,11 @@
 @inherits EmployeeListBase
 
 <h3>Selected Employees Count - @SelectedEmployeesCount</h3>
-<input type="checkbox" id="showFooter" @bind="ShowFooter"/>
+<input type="checkbox" id="showFooter" @bind="ShowFooter" />
 <label for="showFooter">Show Footer</label>
+<br />
+<br />
+
 @if (Employees == null)
 {
     <div class="spinner"></div>
